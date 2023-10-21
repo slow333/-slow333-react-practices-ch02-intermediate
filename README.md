@@ -11,3 +11,5 @@
 3. responsibilities / complexity
 4. Personal coding style
 
+### useState, props를 사용해서  components를 적당한 크기로 분리 함.
+
