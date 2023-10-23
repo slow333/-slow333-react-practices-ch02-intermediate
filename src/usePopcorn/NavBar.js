@@ -1,16 +1,15 @@
 import {useState} from "react";
 
-function NavBar({movies}) {
+function NavBar({children}) {
    return (
         <nav className="nav-bar">
-           <Logo/>
-           <SearchInput/>
-           <NumResult movies={movies}/>
+          <Logo />
+          {children}
         </nav>
    );
 }
 
-function Logo() {
+export function Logo() {
    return (
         <div className="logo">
            <span role="img">🍿</span>
@@ -19,19 +18,13 @@ function Logo() {
    )
 }
 
-function SearchInput() {
-   const [query, setQuery] = useState("");
-   return (
-        <input
-             className="search"
-             type="text"
-             placeholder="Search movies..."
-             value={query}
-             onChange={(e) => setQuery(e.target.value)}
+export function SearchInput({query, onQuery}) {
+   return <input  className="search"  type="text"   placeholder="Search movies..."
+        value={query}
+        onChange={(e) => onQuery(e.target.value)}
         />
-   )
 }
-function NumResult({movies}) {
+export function NumResult({movies}) {
    return <p className="num-results">
       Found <strong>{movies.length}</strong> results
    </p>
