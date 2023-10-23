@@ -9,12 +9,12 @@ export function MovieList({ movies }) {
 function Movie({movie}) {
    return <li >
       <img src={movie.primaryImage?.url}
-           alt={`${movie.originalTitleText.text} poster`} />
-      <h3>{movie.originalTitleText.text}</h3>
+           alt={`${movie.originalTitleText?.text} poster`} />
+      <h3>{movie.originalTitleText?.text}</h3>
       <div>
          <p>
             <span>🗓</span>
-            <span>{movie.releaseYear.year}</span>
+            <span>{movie.releaseYear?.year}</span>
          </p>
       </div>
    </li>

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {tempMovieData, tempWatchedData} from "./PopcornData";
-import NavBar, {Logo, NumResult, SearchInput} from "./NavBar";
+import { tempWatchedData} from "./PopcornData";
+import NavBar, { NumResult, SearchInput} from "./NavBar";
 import  {MovieList} from "./ListBox";
 import  {WatchedMovieList, WatchedSummary} from "./WatchedBox";
 import axios from "axios";
@@ -9,7 +9,6 @@ import Main, {Box} from "./Main";
 export default function UsePopcorn() {
 
   const [queryMovies, setQueryMovies] = useState([])
-  // const [movies, setMovies] = useState(tempMovieData);
   const [query, setQuery] = useState("inception");
   const [watched, setWatched] = useState(tempWatchedData);
 
@@ -19,7 +18,7 @@ export default function UsePopcorn() {
 
   const queryOptions = {
     method: 'GET',
-    url: `${baseUrl}/search/keyword/${query}`,
+    url: `${baseUrl}/search/title/${query}`,
     headers: {
       'X-RapidAPI-Key': '2d26a12669mshf286b9e288f6beap14db0fjsn7487a41c608c',
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
@@ -29,7 +28,7 @@ export default function UsePopcorn() {
   useEffect( () => {
     let complete = false;
     async function getQueryData () {
-      const response = await axios.request(queryOptions)
+     await axios.request(queryOptions)
            .then(response => {
              setQueryMovies(response.data.results)
              console.log("query data", response.data.results)
@@ -37,7 +36,7 @@ export default function UsePopcorn() {
            .catch(error => console.log(error))
     }
     getQueryData();
-    return () => { complete = true}
+    return () => { complete = true }
   }, [query]);
 
   return (
