@@ -1,12 +1,13 @@
 import UsePopcorn from "./usePopcorn/UsePopcorn";
-import StartRating from "./usePopcorn/StartRating";
+import StarRating from "./usePopcorn/StarRating";
+import StarRatingBox from "./usePopcorn/StarRatingBox";
 
 export default function App() {
 
   return (
     <>
       {/*<UsePopcorn/>*/}
-      <StartRating />
+      <StarRatingBox/>
     </>
   );
 }
