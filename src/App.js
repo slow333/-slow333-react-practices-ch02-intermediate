@@ -1,12 +1,9 @@
-import UsePopcorn from "./usePopcorn/UsePopcorn";
-import StartRating from "./usePopcorn/StartRating";
+import HRWApp from "./HowReactWorks/HRWApp";
 
 export default function App() {
-
   return (
-    <>
-      {/*<UsePopcorn/>*/}
-      <StartRating />
-    </>
+    <div>
+      <HRWApp/>
+    </div>
   );
 }
