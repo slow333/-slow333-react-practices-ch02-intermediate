@@ -1,9 +1,10 @@
-import HRWApp from "./HowReactWorks/HRWApp";
+import UsePopcorn from "./usePopcorn/UsePopcorn";
+import UsePopcornApp from "./usePopcorn/UsePopcornApp";
 
 export default function App() {
   return (
     <div>
-      <HRWApp/>
+      <UsePopcornApp />
     </div>
   );
 }
