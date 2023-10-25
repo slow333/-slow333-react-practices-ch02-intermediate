@@ -94,6 +94,7 @@ function MovieDetails({selectedId, onCloseMovie}) {
     imdbRating, Plot: plot, Released: released, Actors: actors,
     Director: director, Genre: genre
   } = selectedMovie;
+
   const selectUrl = `http://www.omdbapi.com/?apikey=${key}&i=${selectedId}`
 
   useEffect(() => {
@@ -110,7 +111,8 @@ function MovieDetails({selectedId, onCloseMovie}) {
   return <div className='details'>
     {isLoading ? <LoadingMovie/> : <>
       <header>
-        <button className='btn-back' onClick={onCloseMovie}> &larr;</button>
+        <button className='btn-back'
+                onClick={onCloseMovie}> &larr;</button>
         <img src={poster} alt={`${title} poster`}/>
         <div className="details-overview">
           <h2>{title}</h2>
