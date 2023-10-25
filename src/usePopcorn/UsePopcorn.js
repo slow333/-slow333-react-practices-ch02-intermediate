@@ -1,3 +1,4 @@
+/*
 import {useEffect, useState} from "react";
 import { tempWatchedData} from "./PopcornData";
 import NavBar, { NumResult, SearchInput} from "./NavBar";
@@ -43,7 +44,7 @@ export default function UsePopcorn() {
     <>
       <NavBar>
         <SearchInput query={query}
-                     onQuery={(value) => setQuery(value)}/>
+                     onQuery={handleQuery}/>
         <NumResult movies={queryMovies}/>
       </NavBar>
       <Main>
@@ -58,3 +59,4 @@ export default function UsePopcorn() {
     </>
   );
 }
+*/

@@ -1,13 +1,9 @@
-import UsePopcorn from "./usePopcorn/UsePopcorn";
-import StarRating from "./usePopcorn/StarRating";
-import StarRatingBox from "./usePopcorn/StarRatingBox";
+import UsePopcornApp from "./usePopcorn/UsePopcornApp";
 
 export default function App() {
-
   return (
-    <>
-      {/*<UsePopcorn/>*/}
-      <StarRatingBox/>
-    </>
+    <div>
+      <UsePopcornApp />
+    </div>
   );
 }
