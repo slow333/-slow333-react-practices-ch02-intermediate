@@ -43,7 +43,7 @@ export default function UsePopcorn() {
     <>
       <NavBar>
         <SearchInput query={query}
-                     onQuery={(value) => setQuery(value)}/>
+                     onQuery={handleQuery}/>
         <NumResult movies={queryMovies}/>
       </NavBar>
       <Main>

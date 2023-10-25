@@ -1,5 +1,3 @@
-import {useState} from "react";
-
 function NavBar({children}) {
    return (
         <nav className="nav-bar">
@@ -26,7 +24,7 @@ export function SearchInput({query, onQuery}) {
 }
 export function NumResult({movies}) {
    return <p className="num-results">
-      Found <strong>{movies.length}</strong> results
+      Found <strong>{movies?.length}</strong> results
    </p>
 }
 export default NavBar

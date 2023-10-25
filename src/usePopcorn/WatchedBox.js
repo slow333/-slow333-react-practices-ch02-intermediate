@@ -13,17 +13,19 @@ function WatchedMovie({movie}) {
   return <li>
     <img src={movie.Poster} alt={`${movie.Title} poster`}/>
     <h3>{movie.Title}</h3>
-    <div>
-      <p>
-        <span>⭐️</span> <span>{movie.imdbRating}</span>
-      </p>
-      <p>
-        <span>🌟</span> <span>{movie.userRating}</span>
-      </p>
-      <p>
-        <span>⏳</span> <span>{movie.runtime} min</span>
-      </p>
-    </div>
+    {movie &&
+         <div>
+           <p>
+             <span>⭐️</span> <span>{movie.imdbRating}</span>
+           </p>
+           <p>
+             <span>🌟</span> <span>{movie.userRating}</span>
+           </p>
+           <p>
+             <span>⏳</span> <span>{movie.runtime} min</span>
+           </p>
+         </div>
+    }
   </li>
 }
 
@@ -39,13 +41,13 @@ export function WatchedSummary({watched}) {
         <span>#️⃣</span> <span>{watched.length} movies</span>
       </p>
       <p>
-        <span>⭐️</span> <span>{avgImdbRating}</span>
+        <span>⭐️</span> <span>{avgImdbRating ? avgImdbRating : 0 }</span>
       </p>
       <p>
-        <span>🌟</span> <span>{avgUserRating}</span>
+        <span>🌟</span> <span>{avgUserRating ? avgUserRating: 0 }</span>
       </p>
       <p>
-        <span>⏳</span> <span>{avgRuntime} min</span>
+        <span>⏳</span> <span>{avgRuntime ? avgRuntime : 0 } min</span>
       </p>
     </div>
   </div>
