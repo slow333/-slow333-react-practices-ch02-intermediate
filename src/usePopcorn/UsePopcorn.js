@@ -1,3 +1,4 @@
+/*
 import {useEffect, useState} from "react";
 import { tempWatchedData} from "./PopcornData";
 import NavBar, { NumResult, SearchInput} from "./NavBar";
@@ -58,3 +59,4 @@ export default function UsePopcorn() {
     </>
   );
 }
+*/
