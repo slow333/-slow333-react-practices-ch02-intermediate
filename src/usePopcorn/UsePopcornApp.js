@@ -25,7 +25,6 @@ export default function UsePopcornApp() {
     setQuery(value)
   }
 
-
   useEffect(function () {
 
     // debounce ??? 대신 적용 되는지 모르겠음?
@@ -60,6 +59,7 @@ export default function UsePopcornApp() {
       setError("")
       return;
     }
+    handleCloseDetail(); // fetch 전에 상세 내용 닫음
     fetchMovies();
 
     return function () {
@@ -130,6 +130,20 @@ function DetailView({onCloseDetail, selectedId, onAddWatched, watched}) {
   } = movie;
 
   const detailUrl = `http://www.omdbapi.com/?apikey=${key}&i=${selectedId}`
+
+  // for html event
+  useEffect(() => {
+    function callback (e) {
+        if(e.code === 'Escape') {
+          onCloseDetail();
+        }
+    }
+    document.addEventListener('keydown', callback)
+
+    return function () {
+      document.removeEventListener('keydown', callback)
+    }
+  }, [onCloseDetail]);
 
   useEffect(() => {
     async function getDetail() {
