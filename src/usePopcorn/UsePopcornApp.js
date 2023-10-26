@@ -17,26 +17,39 @@ export default function UsePopcornApp() {
   const [selectedId, setSelectedId] = useState(null)
   const [total, setTotal] = useState("")
 
+  const [displayMessage, setDisplayMessage] = useState("")
+
   const searchUrl = `http://www.omdbapi.com/?apikey=${key}&s=${query}`
 
   function handleQuery(value) {
     setQuery(value)
   }
 
+
   useEffect(function () {
+
+    // debounce ??? 대신 적용 되는지 모르겠음?
+    const timeOutId = setTimeout(() =>
+         setDisplayMessage(query), 500);
+    const controller = new AbortController();
     async function fetchMovies() {
       try {
         setLoading(true)
         setError("") // 기존 설정한 error 값을 갖고 있어 계속 error 메세지만 나옮
-        const res = await fetch(searchUrl)
+        const res = await fetch(searchUrl, { signal: controller.signal})
         if (!res.ok)  throw new Error("Something went wrong .... ??? ^.^;;;")
 
         const data = await res.json()
         if(data.Response === "False") throw new Error("Movie not found")
         setQueryMovies(data.Search)
         setTotal(data.totalResults)
+        setError("")
+
       } catch (err) {
-        setError(err.message)
+        console.log(err.message)
+        if(err.name !== "AbortError") {
+          setError(err.message)
+        }
       } finally {
         setLoading(false)
       }
@@ -48,6 +61,11 @@ export default function UsePopcornApp() {
       return;
     }
     fetchMovies();
+
+    return function () {
+      controller.abort()
+      clearTimeout(timeOutId)
+    };
     }, [ query ]);
 
   function handleDetailId(id) {
@@ -124,9 +142,15 @@ function DetailView({onCloseDetail, selectedId, onAddWatched, watched}) {
     getDetail()
   }, [selectedId]);
 
+// html document title change
   useEffect(() => {
     if(!title) return
     document.title = `| ${title} |`
+
+    // clean up 기능은 unmount 될 때 실행됨
+    return function () {
+      document.title = "usePopcorn"
+    };
   }, [title]);
 
   function handleAdd() {

@@ -8,7 +8,7 @@ export function MovieList({ movies, onSelectedId }) {
 
 function Movie({movie, onSelectedId}) {
    return <li onClick={() => onSelectedId(movie.imdbID)}>
-      <img src={movie.Poster}
+      <img src={movie.Poster ? movie.Poster : "/logo192.png"}
            alt={`${movie.Title.split(" ").slice(0, 2).join("+")} poster`} />
       <h3>{movie.Title}</h3>
       <div>
