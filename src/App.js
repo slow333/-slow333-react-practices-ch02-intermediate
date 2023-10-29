@@ -1,11 +1,11 @@
-import UsePopcorn from "./usePopcorn/UsePopcorn";
-import UsePopcornApp from "./usePopcorn/UsePopcornApp";
 import CurrencyConverterApp from "./currencyConverter/CurrencyConverterApp";
+import UsePopcornApp from "./usePopcorn/UsePopcornApp";
 
 export default function App() {
   return (
     <div>
-      <CurrencyConverterApp />
+      {/* <CurrencyConverterApp /> */}
+      <UsePopcornApp />
     </div>
   );
 }

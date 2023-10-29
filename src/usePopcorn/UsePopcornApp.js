@@ -6,6 +6,7 @@ import Main, {Box} from "./Main";
 import StartRating from "./StartRating";
 
 const key = "7c0d2be6"
+const baseUrl = `http://www.omdbapi.com/?apikey=${key}`
 
 export default function UsePopcornApp() {
 
@@ -18,8 +19,6 @@ export default function UsePopcornApp() {
   const [total, setTotal] = useState("")
 
   const [displayMessage, setDisplayMessage] = useState("")
-
-  const searchUrl = `http://www.omdbapi.com/?apikey=${key}&s=${query}`
 
   function handleQuery(value) {
     setQuery(value)
@@ -35,7 +34,8 @@ export default function UsePopcornApp() {
       try {
         setLoading(true)
         setError("") // 기존 설정한 error 값을 갖고 있어 계속 error 메세지만 나옮
-        const res = await fetch(searchUrl, { signal: controller.signal})
+        const res = await fetch(`${baseUrl}&s=${query}`,
+          { signal: controller.signal})
         if (!res.ok)  throw new Error("Something went wrong .... ??? ^.^;;;")
 
         const data = await res.json()
@@ -104,8 +104,8 @@ export default function UsePopcornApp() {
                               selectedId={selectedId}
                               onAddWatched={handleAddWatched}
                               key={selectedId}
-                              watched={watched}
-                  /> : <>
+                              watched={watched} /> 
+                : <>
                <WatchedSummary watched={ watched }/>
                <WatchedMovieList watched={ watched}
                                  onDeleteWatched={handleDeleteWatched}/> </>
@@ -129,8 +129,6 @@ function DetailView({onCloseDetail, selectedId, onAddWatched, watched}) {
     Actors: actor, Genre: genre, Director: director, Released: released, imdbID, imdbRating
   } = movie;
 
-  const detailUrl = `http://www.omdbapi.com/?apikey=${key}&i=${selectedId}`
-
   // for html event
   useEffect(() => {
     function callback (e) {
@@ -148,7 +146,7 @@ function DetailView({onCloseDetail, selectedId, onAddWatched, watched}) {
   useEffect(() => {
     async function getDetail() {
       setIsLoading(true)
-      const res = await fetch(detailUrl)
+      const res = await fetch(`${baseUrl}&i=${selectedId}`)
       const data = await res.json()
       setMovie(data)
       setIsLoading(false)
@@ -159,7 +157,7 @@ function DetailView({onCloseDetail, selectedId, onAddWatched, watched}) {
 // html document title change
   useEffect(() => {
     if(!title) return
-    document.title = `| ${title} |`
+    document.title = `🎆 ${title}`
 
     // clean up 기능은 unmount 될 때 실행됨
     return function () {
@@ -197,13 +195,14 @@ function DetailView({onCloseDetail, selectedId, onAddWatched, watched}) {
       </header>
       <section className=''>
         <div className="rating">
-          { isWatched ?
-               <div>이미 <em style={{fontSize: "26px"}}>{watchedUserRating}🌟</em>로 평가했습니다.</div> :<>
-                 <StartRating onUserRating={handleUserRating} rating={userRating}/>
+          { isWatched 
+            ? <div>이미 <em style={{fontSize: "26px"}}>{watchedUserRating}🌟</em>로 평가했습니다.</div> 
+            :<>
+                <StartRating onUserRating={handleUserRating} rating={userRating}/>
                  {userRating > 0 &&
-                      <button className='btn-add'
-                              onClick={handleAdd}>+ ADD to list</button> }
-               </>
+                  <button className='btn-add'
+                    onClick={handleAdd}>+ ADD to list</button> }
+            </>
           }
         </div>
         <p><em>{plot}</em></p>

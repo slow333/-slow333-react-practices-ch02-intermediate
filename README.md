@@ -13,3 +13,16 @@
 
 ### state, props를 사용해서  components를 적당한 크기로 분리 함.
 
+## 내용 2
+### http://www.omdbapi.com/?apikey=my_key&
+* side effect(useEffect) : api 사용
+* fetch : try catch, error 처리 등
+* search api query
+* paging 관련 내용 없음
+* handle searched data, handle query data
+* how to handle api etc
+
+### star rating
+* onMouseEnter, onMouseLeave 
+* click handle
+* 많이 복잡해서 그냥 가져와서 사용하게 좋음...
